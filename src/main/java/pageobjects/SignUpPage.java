@@ -1,12 +1,11 @@
-package pageObjects;
+package pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import sun.jvm.hotspot.debugger.Page;
 
-public class SignUpPO {
+public class SignUpPage {
     private final WebDriver driver;
 
     @FindBy(id = "input-firstname")
@@ -30,7 +29,7 @@ public class SignUpPO {
     @FindBy(name = "agree")
     WebElement privacyCheckBox;
 
-    @FindBy(xpath = "//input[@class='btn btn-primary']")
+    @FindBy(xpath = "//div[@class='pull-right']//input[@class='btn btn-primary']")
     WebElement continueBtn;
 
     @FindBy(xpath = "//h1[text()='Your Account Has Been Created!']")
@@ -39,11 +38,11 @@ public class SignUpPO {
     @FindBy(xpath = "//div[@class='form-group required has-error']")
     WebElement fieldErrorMessage;
 
-    @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
+    @FindBy(xpath = "//div[contains(@class,'alert-danger')]")
     WebElement duplicatedEmailErrorMessage;
 
 
-    public  SignUpPO(WebDriver driver){
+    public SignUpPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
@@ -52,12 +51,15 @@ public class SignUpPO {
     public boolean successMessage(){
         return successMessage.isDisplayed();
     }
+
     public boolean missingFieldsError(){
         return fieldErrorMessage.isDisplayed();
     }
+
     public boolean duplicatedEmailError(){
         return duplicatedEmailErrorMessage.isDisplayed();
     }
+
     public void insertFields(String firstNameData, String lastNameData, String emailData, String telephoneData, String passwordData, String confirmPasswordData){
         if (firstNameData != null) {
             firstName.sendKeys(firstNameData);
@@ -77,9 +79,8 @@ public class SignUpPO {
         if (confirmPasswordData != null) {
             confirmPassword.sendKeys(confirmPasswordData);
         }
-    }
-    public void continueRegistration(){
         privacyCheckBox.click();
         continueBtn.click();
     }
+
 }

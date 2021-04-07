@@ -1,11 +1,11 @@
-package pageObjects;
+package pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class MainPO {
+public class MainPage {
 
     private final WebDriver driver;
 
@@ -15,7 +15,7 @@ public class MainPO {
     @FindBy(xpath = "//a[text()='Register']")
     WebElement register;
 
-    public MainPO(WebDriver driver){
+    public MainPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
