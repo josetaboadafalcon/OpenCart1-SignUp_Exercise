@@ -23,7 +23,6 @@ public class OpenCart1 extends Base{
     }
 
     @Test(dataProvider = "correct data", dataProviderClass =SignUpData.class)
-    //with valid data
     public void testSuccess(String firstName, String lastName, String email, String telephone, String password, String confirmPassword) {
         SignUpPO.insertFields(firstName, lastName, email, telephone, password, confirmPassword);
         SignUpPO.continueRegistration();
@@ -31,7 +30,6 @@ public class OpenCart1 extends Base{
     }
 
     @Test(dataProvider = "missing data", dataProviderClass =SignUpData.class)
-    //with missing data
     public void testMissingError(String firstName, String lastName, String email, String telephone, String password, String confirmPassword) {
         SignUpPO.insertFields(firstName, lastName, email, telephone, password, confirmPassword);
         SignUpPO.continueRegistration();
@@ -39,14 +37,12 @@ public class OpenCart1 extends Base{
     }
 
     @Test(dataProvider = "invalid email", dataProviderClass =SignUpData.class)
-    //with invalid email
     public void testInvalidEmail(String firstName, String lastName, String email, String telephone, String password, String confirmPassword) {
         SignUpPO.insertFields(firstName, lastName, email, telephone, password, confirmPassword);
         SignUpPO.continueRegistration();
         Assert.assertTrue(SignUpPO.missingFieldsError());
     }
     @Test(dataProvider = "duplicated email", dataProviderClass =SignUpData.class)
-    //with invalid email
     public void testDuplicatedEmail(String firstName, String lastName, String email, String telephone, String password, String confirmPassword) {
         SignUpPO.insertFields(firstName, lastName, email, telephone, password, confirmPassword);
         SignUpPO.continueRegistration();
